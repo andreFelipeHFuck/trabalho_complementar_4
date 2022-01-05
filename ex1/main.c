@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-int main(){
+int contaLinhas(){
     FILE *arq;
-    int *v;
-    int i, n;
-    int posi, nega;
+    int cont = 0;
+    char c, letras = '\n';
 
     arq = fopen("entrada.txt", "rt");
     if(arq == NULL){
@@ -14,9 +12,40 @@ int main(){
         return -1;
     }
 
+    while(fread(&c, sizeof(char), 1, arq)){
+        if(c == letras){
+            cont++;
+        }
+    }
+
+    fclose(arq);
+    return cont;
+}
+
+int main(){
+    FILE *arq_entrada;
+    FILE *arq_saida;
+    int *v;
+    int i, n, cont;
+    int posi, nega;
+
+
+    arq_entrada = fopen("entrada.txt", "rt");
+    if(arq_entrada == NULL){
+        printf("Erro no arquivo de entrada\n");
+        return -1;
+    }
+
+    arq_saida = fopen("saida.txt", "wt" );
+    if(arq_saida == NULL){
+        printf("Erro no arquivo de saida\n");
+        return -1;
+    }
+    
+
     while (1)
     {
-        fscanf(arq, "%d", &n);
+        fscanf(arq_entrada, "%d", &n);
         if(n == 0){
             break;
         }
@@ -27,23 +56,24 @@ int main(){
             v = malloc(n * sizeof(int));
 
             for(i = 0; i < n; i ++){
-                fscanf(arq, "%d", &v[i]);
+                fscanf(arq_entrada, "%d", &v[i]);
                 if(v[i] < 0){
                     nega++;
                 }else{
                     posi++;
                 }
             }
-            printf("%d positivo, %d negativo", posi, nega);
-
+           fprintf(arq_saida, "%d positivo, %d negativo\n", posi, nega);
+            free(v);
         }else{
-            printf("Quantidade invalida de casos\n");
-        }
-        
-               
+           fprintf(arq_saida, "Quantidade invalida de casos\n");
+        }      
     }
     
-    fclose(arq);
+
+    fclose(arq_entrada);
+    fclose(arq_saida);
+
 }
 
 /*

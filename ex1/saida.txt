@@ -1,0 +1,6 @@
+Quantidade invalida de casos
+3 positivo, 1 negativo
+3 positivo, 4 negativo
+1 positivo, 1 negativo
+Quantidade invalida de casos
+0 positivo, 4 negativo
