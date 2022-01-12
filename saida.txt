@@ -1,0 +1,5 @@
+1 positivo, 2 negativo
+8 positivo, 5 negativo
+6 positivo, 6 negativo
+1 positivo, 1 negativo
+6 positivo, 3 negativo

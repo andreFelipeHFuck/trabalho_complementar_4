@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <time.h>
 
 int main(){
     int n, n_entrada;
@@ -16,11 +16,12 @@ int main(){
     printf("N: ");
     scanf("%d", &n);
 
+    srand(time(NULL));
     for(i = 0; i < n; i++){
         n_entrada = rand() % 20;
         fprintf(arq, "%d ", n_entrada);
         for(j = 0; j < n_entrada; j++){
-            fprintf(arq, "%d ", rand() % -10);
+            fprintf(arq, "%d ", rand() % 21-10);
         }
         fprintf(arq, "\n");
     }
